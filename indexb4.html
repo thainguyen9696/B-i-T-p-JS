@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rectangle Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .calculator {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        .calculator h2 {
+            margin-top: 0;
+        }
+        .calculator input, .calculator button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .calculator button {
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<div class="calculator">
+    <h2>Rectangle Calculator</h2>
+    <label for="length">Enter length:</label>
+    <input type="number" id="length" step="any" placeholder="Enter length">
+    <label for="width">Enter width:</label>
+    <input type="number" id="width" step="any" placeholder="Enter width">
+    <button onclick="calculateRectangle()">Calculate</button>
+    <button onclick="resetFields()">Reset</button>
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+    function calculateRectangle() {
+        const length = parseFloat(document.getElementById('length').value);
+        const width = parseFloat(document.getElementById('width').value);
+
+        if (isNaN(length) || isNaN(width) || length <= 0 || width <= 0) {
+            document.getElementById('result').innerText = 'Please enter valid positive numbers for length and width.';
+            return;
+        }
+
+        const area = length * width;
+        const perimeter = 2 * (length + width);
+        document.getElementById('result').innerText = `Area: ${area.toFixed(2)} square units, Perimeter: ${perimeter.toFixed(2)} units`;
+    }
+
+    function resetFields() {
+        document.getElementById('length').value = '';
+        document.getElementById('width').value = '';
+        document.getElementById('result').innerText = '';
+    }
+</script>
+
+</body>
+</html>

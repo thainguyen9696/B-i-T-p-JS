@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digit Sum Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .calculator {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        .calculator h2 {
+            margin-top: 0;
+        }
+        .calculator input, .calculator button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .calculator button {
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<div class="calculator">
+    <h2>Digit Sum Calculator</h2>
+    <label for="twoDigitNumber">Enter a two-digit number:</label>
+    <input type="number" id="twoDigitNumber" placeholder="Enter a two-digit number" min="10" max="99">
+    <button onclick="calculateDigitSum()">Calculate Sum</button>
+    <button onclick="resetFields()">Reset</button>
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+    function calculateDigitSum() {
+        const number = parseInt(document.getElementById('twoDigitNumber').value);
+
+        if (isNaN(number) || number < 10 || number > 99) {
+            document.getElementById('result').innerText = 'Please enter a valid two-digit number.';
+            return;
+        }
+
+        const tens = Math.floor(number / 10);
+        const units = number % 10;
+        const sum = tens + units;
+
+        document.getElementById('result').innerText = `Sum of digits: ${sum}`;
+    }
+
+    function resetFields() {
+        document.getElementById('twoDigitNumber').value = '';
+        document.getElementById('result').innerText = '';
+    }
+</script>
+
+</body>
+</html>

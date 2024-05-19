@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .converter {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        .converter h2 {
+            margin-top: 0;
+        }
+        .converter input, .converter button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .converter button {
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<div class="converter">
+    <h2>Currency Converter</h2>
+    <label for="usdAmount">Enter amount in USD:</label>
+    <input type="number" id="usdAmount" step="any" placeholder="Enter amount in USD">
+    <button onclick="convertCurrency()">Convert to VND</button>
+    <button onclick="resetFields()">Reset</button>
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+    const exchangeRate = 23500;
+
+    function convertCurrency() {
+        const usdAmount = parseFloat(document.getElementById('usdAmount').value);
+
+        if (isNaN(usdAmount) || usdAmount <= 0) {
+            document.getElementById('result').innerText = 'Please enter a valid amount in USD.';
+            return;
+        }
+
+        const vndAmount = usdAmount * exchangeRate;
+        document.getElementById('result').innerText = 'Equivalent amount in VND: ' + vndAmount.toLocaleString() + ' VND';
+    }
+
+    function resetFields() {
+        document.getElementById('usdAmount').value = '';
+        document.getElementById('result').innerText = '';
+    }
+</script>
+
+</body>
+</html>
